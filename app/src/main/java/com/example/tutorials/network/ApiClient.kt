@@ -19,7 +19,7 @@ object ApiClient {
     private val BASE_URL = "https://rickandmortyapi.com/api/"
 
     /**
-     Next we create a variable for the moshi buil;der
+     Next we create a variable for the moshi builder
      adding a converter to it
      */
 
@@ -28,14 +28,13 @@ object ApiClient {
     private val retrofit : Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(MoshiConverterFactory.create(moshi))  // invertigar json converter
             .build()
     }
 
     val apiService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-
 }
 
 /**
@@ -52,4 +51,6 @@ interface ApiService{
      * */
     @GET("character")
     fun fetchCharacters(@Query("page") page:String): Call<CharacterResponse>
+
+    //@GET("charac")
 }

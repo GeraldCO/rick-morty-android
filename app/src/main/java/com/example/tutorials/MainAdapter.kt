@@ -1,7 +1,7 @@
 package com.example.tutorials
 
+import android.content.Intent
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -30,6 +30,12 @@ class MainAdapter (val charactersList: List<Character>) : RecyclerView.Adapter<M
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+        holder.itemView.setOnClickListener{
+            val intent = Intent(it.context, character_details::class.java)
+            val id = charactersList[position].id
+            intent.putExtra("id", id);
+            it.context.startActivity(intent);
+        }
         holder.bindData(charactersList[position])
     }
 

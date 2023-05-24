@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".character_details">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/charatersRv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <TextView
+        android:id="@+id/characterNameTV"
+        android:layout_width="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="wrap_content"
+        android:text="character details "
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="100dp"
 
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
