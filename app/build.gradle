@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+
     namespace 'com.example.tutorials'
     compileSdk 32
 
@@ -32,7 +33,7 @@ android {
     }
 
     buildFeatures{
-        viewBinding true
+        viewBinding = true
     }
 }
 

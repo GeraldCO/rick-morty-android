@@ -8,19 +8,24 @@ import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.tutorials.databinding.ActivityMainBinding
 import com.example.tutorials.network.Character
 import com.google.android.material.snackbar.Snackbar
 
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by lazy{
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         viewModel.characterLiveData.observe(this) { state ->
             processCharactersResponse(state)
@@ -30,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun processCharactersResponse(state: ScreenState<List<Character>?>){
-        val pb = findViewById<ProgressBar>(R.id.progressBar)
+        val pb = binding.progressBar
 
 
         when(state){
@@ -41,10 +46,10 @@ class MainActivity : AppCompatActivity() {
                 pb.visibility = View.GONE
                 if(state.data != null){
                     val adapter = MainAdapter(state.data )
-                    val recyclerView = findViewById<RecyclerView>(R.id.charatersRv)
-                    recyclerView?.layoutManager =
+                    val recyclerView = binding.charatersRv
+                    recyclerView.layoutManager =
                         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                    recyclerView?.adapter = adapter
+                    recyclerView.adapter = adapter
                 }
             }
 
@@ -57,4 +62,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 }
