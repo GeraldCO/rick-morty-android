@@ -16,10 +16,10 @@ object ApiClient {
      from our link and create the base url variable of type string
 
      */
-    private val BASE_URL = "https://rickandmortyapi.com/api/"
+    private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     /**
-     Next we create a variable for the moshi buil;der
+     Next we create a variable for the moshi builder
      adding a converter to it
      */
 
