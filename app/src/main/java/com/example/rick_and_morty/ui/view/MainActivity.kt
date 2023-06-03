@@ -1,15 +1,16 @@
-package com.example.tutorials
+package com.example.rick_and_morty.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.rick_and_morty.MainAdapter
+import com.example.rick_and_morty.ui.viewModel.MainViewModel
+import com.example.rick_and_morty.common.ScreenState
 import com.example.tutorials.databinding.ActivityMainBinding
-import com.example.tutorials.network.Character
+import com.example.rick_and_morty.data.model.Character
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -30,8 +31,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.characterLiveData.observe(this) { state ->
             processCharactersResponse(state)
         }
-
-
     }
 
     private fun processCharactersResponse(state: ScreenState<List<Character>?>){

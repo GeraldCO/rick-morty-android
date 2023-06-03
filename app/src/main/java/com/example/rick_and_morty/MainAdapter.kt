@@ -1,7 +1,6 @@
-package com.example.tutorials
+package com.example.rick_and_morty
 
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.example.tutorials.network.Character
+import com.example.tutorials.R
+import com.example.rick_and_morty.data.model.Character
 
 class MainAdapter (val charactersList: List<Character>) : RecyclerView.Adapter<MainAdapter.MainViewHolder>(){
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tutorials</string>
+    <string name="textview">TextView</string>
+    <string name="CharacterID">TextView</string>
 </resources>

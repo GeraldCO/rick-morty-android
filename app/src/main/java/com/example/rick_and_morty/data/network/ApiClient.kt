@@ -1,22 +1,19 @@
-package com.example.tutorials.network
+package com.example.rick_and_morty.data.network
 
+import com.example.rick_and_morty.common.Constants.BASE_URL
+import com.example.rick_and_morty.data.model.CharacterResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 object ApiClient {
 
-    /**
-    https://rickandmortyapi.com/api/character/?page=1
-     the retrofit builder will need a base url so we extract that
-     from our link and create the base url variable of type string
 
-     */
-    private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     /**
      Next we create a variable for the moshi builder
@@ -35,7 +32,6 @@ object ApiClient {
     val apiService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-
 }
 
 /**
@@ -52,4 +48,7 @@ interface ApiService{
      * */
     @GET("character")
     fun fetchCharacters(@Query("page") page:String): Call<CharacterResponse>
+
+    @GET("character/{characterId}")
+    fun fetchCharacterDetails(@Path("characterId") characterId:Int): Call<CharacterResponse>
 }

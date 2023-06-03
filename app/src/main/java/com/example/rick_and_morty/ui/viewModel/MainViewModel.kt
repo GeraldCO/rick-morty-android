@@ -1,18 +1,23 @@
-package com.example.tutorials
+package com.example.rick_and_morty.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.tutorials.network.ApiClient
-import com.example.tutorials.network.Character
-import com.example.tutorials.network.CharacterResponse
+import com.example.rick_and_morty.common.ScreenState
+import com.example.rick_and_morty.data.Repository
+import com.example.rick_and_morty.data.network.ApiClient
+import com.example.rick_and_morty.data.model.Character
+import com.example.rick_and_morty.data.model.CharacterResponse
+import com.example.rick_and_morty.domain.usecases.FetchCharactersUseCase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainViewModel (private val repository:Repository
+class MainViewModel (
+    private val fetchCharactersUseCase: FetchCharactersUseCase,
+    private val repository: Repository
                         = Repository(ApiClient.apiService)   ) : ViewModel() {
 
     private var _charactersLiveData = MutableLiveData<ScreenState<List<Character>?>>()
@@ -32,9 +37,12 @@ class MainViewModel (private val repository:Repository
                 response: Response<CharacterResponse>
             ) {
                 if(response.isSuccessful){
-                    _charactersLiveData.postValue( ScreenState.Success(response.body()?.result))
+                    _charactersLiveData.postValue(ScreenState.Success(response.body()?.result))
                 }else{
-                    _charactersLiveData.postValue((ScreenState.Error(response.code().toString(), null)))
+                    _charactersLiveData.postValue((ScreenState.Error(
+                        response.code().toString(),
+                        null
+                    )))
                 }
             }
 

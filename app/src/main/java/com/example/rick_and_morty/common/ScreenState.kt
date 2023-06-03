@@ -1,4 +1,4 @@
-package com.example.tutorials
+package com.example.rick_and_morty.common
 
 sealed class ScreenState<T>  (val data: T? = null, val message:String? = null){
 
